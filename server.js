@@ -10,7 +10,7 @@ let users = [];
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get("/login", (req, res) => {
+app.post("/login", (req, res) => {
   res.status(200).json({
     data: {
       user: {
