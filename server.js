@@ -33,7 +33,6 @@ app.get("/allUsers", (req, res) => {
 app.post("/createUser", (req, res) => {
   const {  email, username ,jobRole} = req.body;
 
-console.log(req.body,"req.body")
   if (!email || !username|| !jobRole) {
     return res.status(400).json({ message: "Missing required fields" });
   }
@@ -53,7 +52,7 @@ console.log(req.body,"req.body")
 
 app.patch("/updateUser/:id", (req, res) => {
   const userId = parseInt(req.params.id);
-  const { name, email, username } = req.body;
+  const {  email ,jobRole } = req.body;
 
   const userIndex = users.findIndex((u) => u.id === userId);
   if (userIndex === -1) {
@@ -62,9 +61,9 @@ app.patch("/updateUser/:id", (req, res) => {
 
   users[userIndex] = {
     ...users[userIndex],
-    name: name || users[userIndex].name,
     email: email || users[userIndex].email,
-    username: username || users[userIndex].username,
+    username:  users[userIndex].username,
+    jobRole:jobRole
   };
 
   res.status(200).json({
